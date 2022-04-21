@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>手写代码实现 | Hongxu`Blog</title>
+    <meta name="description" content="A VitePress site">
+    <link rel="stylesheet" href="/interview/assets/style.934bfaf1.css">
+    <link rel="modulepreload" href="/interview/assets/app.ab2b0ce5.js">
+    <link rel="modulepreload" href="/interview/assets/javascript_snippets.md.fc13763b.lean.js">
+    
+    <link rel="icon" href="/favicon.ico">
+  <meta name="twitter:title" content="手写代码实现 | Hongxu`Blog">
+  <meta property="og:title" content="手写代码实现 | Hongxu`Blog">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme"><header class="nav-bar" data-v-675d8756><div class="sidebar-button" data-v-675d8756><svg class="icon" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z" class></path></svg></div><a class="nav-bar-title" href="/interview/" aria-label="Hongxu`Blog, back to home" data-v-675d8756 data-v-cc01ef16><!----> Hongxu`Blog</a><div class="flex-grow" data-v-675d8756></div><div class="nav" data-v-675d8756><nav class="nav-links" data-v-675d8756 data-v-eab3edfe><!--[--><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/interview/" data-v-b8818f8c>首页 <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/interview/html/" data-v-b8818f8c>HTML <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item active" href="/interview/javascript/" data-v-b8818f8c>JavaScript <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/interview/about/" data-v-b8818f8c>关于 <!----></a></div></div><!--]--><!----><!----></nav></div><!--[--><!--]--></header><aside class="sidebar" data-v-83e92a68><nav class="nav-links nav" data-v-83e92a68 data-v-eab3edfe><!--[--><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/interview/" data-v-b8818f8c>首页 <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/interview/html/" data-v-b8818f8c>HTML <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item active" href="/interview/javascript/" data-v-b8818f8c>JavaScript <!----></a></div></div><div class="item" data-v-eab3edfe><div class="nav-link" data-v-eab3edfe data-v-b8818f8c><a class="item" href="/interview/about/" data-v-b8818f8c>关于 <!----></a></div></div><!--]--><!----><!----></nav><!--[--><!--]--><ul class="sidebar-links" data-v-83e92a68><!--[--><li class="sidebar-link"><p class="sidebar-link-item">HTML</p><ul class="sidebar-links"><li class="sidebar-link"><a class="sidebar-link-item" href="/interview/html/">基础</a><!----></li></ul></li><li class="sidebar-link"><p class="sidebar-link-item">JavaScript</p><ul class="sidebar-links"><li class="sidebar-link"><a class="sidebar-link-item" href="/interview/javascript/">区别篇</a><!----></li><li class="sidebar-link"><a class="sidebar-link-item active" href="/interview/javascript/snippets">手写代码</a><ul class="sidebar-links"><li class="sidebar-link"><a class="sidebar-link-item" href="#重写reduce">重写reduce</a><!----></li></ul></li></ul></li><!--]--></ul><!--[--><!--]--></aside><div class="sidebar-mask"></div><main class="page" data-v-7eddb2c4><div class="container" data-v-7eddb2c4><!--[--><!--]--><div style="position:relative;" class="content" data-v-7eddb2c4><div><h1 id="array篇" tabindex="-1">Array篇 <a class="header-anchor" href="#array篇" aria-hidden="true">#</a></h1><h2 id="重写reduce" tabindex="-1">重写reduce <a class="header-anchor" href="#重写reduce" aria-hidden="true">#</a></h2><div class="language-javascript"><pre><code>    <span class="token comment">/**
+ * 累加器
+ * @param callback
+ * @param initialValue
+ * @returns {*}
+ */</span>
+<span class="token class-name">Array</span><span class="token punctuation">.</span>prototype<span class="token punctuation">.</span><span class="token function-variable function">x_reduce</span> <span class="token operator">=</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token parameter">callback<span class="token punctuation">,</span> initialValue</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">let</span> temp
+    <span class="token keyword">let</span> i <span class="token operator">=</span> <span class="token number">0</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>initialValue<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        temp <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span>
+        i <span class="token operator">=</span> <span class="token number">1</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        temp <span class="token operator">=</span> <span class="token function">callback</span><span class="token punctuation">(</span>temp<span class="token punctuation">,</span> <span class="token keyword">this</span><span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">,</span> i<span class="token punctuation">,</span> arr<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> temp
+<span class="token punctuation">}</span>
+</code></pre></div></div></div><footer class="page-footer" data-v-7eddb2c4 data-v-07c132fc><div class="edit" data-v-07c132fc><div class="edit-link" data-v-07c132fc data-v-1ed99556><!----></div></div><div class="updated" data-v-07c132fc><!----></div></footer><div class="next-and-prev-link" data-v-7eddb2c4 data-v-38ede35f><div class="container" data-v-38ede35f><div class="prev" data-v-38ede35f><a class="link" href="/interview/javascript/" data-v-38ede35f><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" class="icon icon-prev" data-v-38ede35f><path d="M19,11H7.4l5.3-5.3c0.4-0.4,0.4-1,0-1.4s-1-0.4-1.4,0l-7,7c-0.1,0.1-0.2,0.2-0.2,0.3c-0.1,0.2-0.1,0.5,0,0.8c0.1,0.1,0.1,0.2,0.2,0.3l7,7c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3c0.4-0.4,0.4-1,0-1.4L7.4,13H19c0.6,0,1-0.4,1-1S19.6,11,19,11z"></path></svg><span class="text" data-v-38ede35f>区别篇</span></a></div><div class="next" data-v-38ede35f><!----></div></div></div><!--[--><!--]--></div></main></div><!----><!--]--></div>
+    <script>__VP_HASH_MAP__ = JSON.parse("{\"about_index.md\":\"9d58fe46\",\"html_advanced.md\":\"a1e770eb\",\"html_index.md\":\"8782df25\",\"index.md\":\"06065e1a\",\"javascript_index.md\":\"e2b0f946\",\"javascript_snippets.md\":\"fc13763b\"}")</script>
+    <script type="module" async src="/interview/assets/app.ab2b0ce5.js"></script>
+    
+  </body>
+</html>
